@@ -30,7 +30,7 @@ var buttonClickHandler = function (event) {
 };
 
 var getUserRepos = function (user) {
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=""&lon=""&appid=7b9e83b916217cf85fb25364854614d5'
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=""&lon=""&appid='
 
     fetch(apiUrl)
         .then(function (response) {
