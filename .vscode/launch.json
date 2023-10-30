@@ -1,0 +1,134 @@
+const userFormEl = document.querySelector('#user-input');
+
+const cityInputEl = document.querySelector('#cityname');
+
+const timeZone = document.querySelector('#time-zone');
+const state = document.querySelector('#state');
+const futureTime = document.querySelector('future-forecast');
+const today = document.querySelector('future-forecast');
+const currentTemp = document.querySelector('current-temp');
+const day = document.querySelector('day');
+const temp = document.querySelector('temp');
+let weatherForecast = document.querySelector('weather-forecast');
+const weatherForecastItem = document.querySelector('weather-forecast-item');
+// const FiveDayForecast = document.querySelector('5-day-weather-forecast');
+let citySearchTerm = document.querySelector('#city-search-term');
+// const cityButtonsEl = document.querySelector('#city-buttons');
+const resultContainerEl = document.querySelector('#result-container');
+
+const formSubmitHandler = function (event) {
+    event.preventDefault();
+
+    const cityName = cityInputEl.value.trim();
+
+    if (cityName) {
+        getCityWeather(cityName);
+
+        // resultContainerEl.textContent = '';
+        cityInputEl.value = '';
+    } else {
+        alert('Please enter a city');
+    }
+};
+
+// const buttonClickHandler = function (event) {
+//     const city = event.target.getAttribute('data-city');
+//     if (city) {
+//         getFeaturedCities(city);
+//         cityButtonsEl.textContent = '';
+//     }
+// };
+
+const getCityWeather = function (user) {
+    var apiUrl = 'http: //api.openweathermap.org/data/2.5/forecast?q=' + cityInputEl.value + '&units=imperial&appid=343936b9fd05267869e0bf8c1d533d1c';
+
+
+    fetch(apiUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data);
+                    displayCities(data);
+            });
+        } else {
+                alert('Error: ' + response.statusText);
+        }
+    })
+        .catch(function (error) {
+            alert('Unable to connect to Weather Application');
+    });
+};
+
+// const getFeaturedCities = function (city) {
+//     const apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=343936b9fd05267869e0bf8c1d533d1c';
+//     fetch(apiUrl).then(function (response) {
+//         if (response.ok) {
+//             response.json().then(function (data) {
+//                 displayCities(data);
+//             });
+//         } else {
+//             alert('Error: ' + response.statusText);
+//         }
+//     });
+// };
+
+
+function displayCities(data) {
+    // const futureTime = document.querySelector('future-forecast');
+    // const today = document.querySelector('future-forecast');
+    // const currentTemp = document.querySelector('current-temp');
+    // const day = document.querySelector('day');
+    // const temp = document.querySelector('temp');
+    // const weatherForecast = document.querySelector('weather-forecast');
+    // const weatherForecastItem = document.querySelector('weather-forecast-item');
+    // const FiveDayForecast = document.querySelector('5-day-weather-forecast');
+    // let citySearchTerm = document.querySelector('#city-search-term');
+    // const cityButtonsEl = document.querySelector('#city-buttons');
+
+
+    let currentForecast = 0;
+    weatherForecast = data.list[
+        0
+    ];
+    temperature = weatherForecast.main.temp;
+    console.log(temperature)
+    humidity = weatherForecast.main.humidity;
+    console.log(humidity)
+    wind = weatherForecast.wind.speed;
+    console.log(wind)
+    currentWeather = [temperature, humidity, wind
+    ];
+    console.log(currentWeather);
+    // citySearchTerm.innerHTML = cityInputEl.value;
+    // console.log(cityInputEl.value)
+
+
+    if ([currentForecast
+    ].currentWeather < 5) {
+        console.log(currentForecast);
+        currentWeather.textContent = resultContainerEl
+        resultContainerEl.innerHTML = '';
+    }
+    for (let i = 0; i < [currentForecast
+    ].currentWeather; i++) {
+        console.log(data.list[currentForecast
+        ].currentWeather);
+        var result = document.createElement('div');
+        console.log(result);
+
+
+        result.classList = 'list-item flex-row justify-space-between align-center';
+        // cityEl.setAttribute('href', './single-repo.html?repo=' + cityName);
+
+        var titleEl = document.createElement('span');
+        titleEl.textContent = currentWeather[i
+        ];
+
+
+        currentWeather.appendChild(titleEl);
+        resultContainerEl.appendChild(weatherForecast);
+    }
+};
+
+userFormEl.addEventListener('submit', formSubmitHandler);
+// cityButtonsEl.addEventListener('click', buttonClickHandler);

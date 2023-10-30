@@ -33,8 +33,8 @@
             </div>
 
 
-            <div class="card">
-                <h3 class="card-header text-uppercase">Search By Topic</h3>
+            <!-- <div class="card">
+                <h3 class="card-header text-uppercase">Search By Major City</h3>
                 <div id="city-buttons" class="card-body">
                     <button data-city="new-york" class="btn">New York</button>
                     <button data-city="los-angeles" class="btn">Los Angeles</button>
@@ -42,13 +42,28 @@
                     <button data-city="houston" class="btn">Houston</button>
                     <button data-city="phoenix" class="btn">Phoenix</button>
                 </div>
-            </div>
+            </div> -->
         </div>
 
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8" id="result-container">
             <h2 class="subtitle">Forecast results for: <span id="city-search-term"></span></h2>
-            <div id="result-container" class="list-group"></div>
+            <div id="time-zone" class="time-zone"></div>
+            <div id="state" class="state"></div>
         </div>
+        <div class="weather-forecast">
+
+            <div class="today" id="current-temp"></div>
+            <img src="" alt="weather Icon" id="weatherIcon">
+            <div class="day">Today</div>
+            <div>Temperature:<span id="temperature"></span></div>
+            <div></div>
+            <div>Humidity: <span id="humidity"></span></div>
+            <div></div>
+            <div>Wind:<span id="wind"></span></div>
+            <div class="row" id="future-forecast"></div>
+
+        </div>
+
     </main>
 
     <script src="./script.js"></script>

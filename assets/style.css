@@ -145,8 +145,7 @@ p {
     color: rgb(29, 153, 255);
 }
 
-/* CARDS */
-.card {
+/* CARDS .card {
     margin: 0 0 20px 0;
     border: 3px solid var(--dark);
     border-radius: var(--border-radius);
@@ -161,7 +160,7 @@ p {
 
 .card-body {
     padding: 2.5%;
-}
+} */
 
 /* FORM */
 .form-label,
