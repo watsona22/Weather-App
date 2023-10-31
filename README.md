@@ -23,7 +23,7 @@ I learned how to use API to retrieve service data and display it dynamically. Th
 
 The html, css, and js files can be used to understand the dynamic code that supports the application. A link to the mockup is listed below, for your convenience. 
 ![Weather App Mockup](./assets/weather-app-mockup.png)
-https://watsona22.github.io/Event-Planner/
+https://watsona22.github.io/Weather-App/
 
 ## Credits
 
