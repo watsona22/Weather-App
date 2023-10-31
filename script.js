@@ -2,8 +2,7 @@ const userFormEl = document.querySelector('#user-input');
 
 const cityInputEl = document.querySelector('#cityname');
 
-const timeZone = document.querySelector('#time-zone');
-const state = document.querySelector('#state');
+
 const futureTime = document.querySelector('future-forecast');
 const today = document.querySelector('future-forecast');
 const currentTemp = document.querySelector('current-temp');
@@ -14,7 +13,6 @@ let wind = document.querySelector('wind');
 const forecast = document.querySelector('#future-forecast');
 
 let weatherForecast = document.querySelector('.weather-forecast');
-// const weatherForecastItem = document.querySelector('weather-forecast-item');
 let citySearchTerm = document.querySelector('#city-search-term');
 
 const resultContainerEl = document.querySelector('#result-container');
@@ -27,7 +25,6 @@ const formSubmitHandler = function (event) {
     if (cityName) {
         getCityWeather(cityName);
 
-        // resultContainerEl.textContent = '';
         cityInputEl.value = '';
 
 
@@ -36,18 +33,8 @@ const formSubmitHandler = function (event) {
     }
 };
 
-// const buttonClickHandler = function (event) {
-//     const city = event.target.getAttribute('data-city');
-
-//     if (city) {
-//         getFeaturedCities(city);
-
-//         cityButtonsEl.textContent = '';
-//     }
-// };
-
 const getCityWeather = function (user) {
-    var apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityInputEl.value + '&units=imperial&appid=343936b9fd05267869e0bf8c1d533d1c';
+    var apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityInputEl.value + '&units=imperial&list.weather.id&appid=343936b9fd05267869e0bf8c1d533d1c';
 
 
     fetch(apiUrl)
@@ -66,48 +53,64 @@ const getCityWeather = function (user) {
         });
 };
 
-
-
-
 function displayCities(data) {
-    // let currentForecast = 0;
+    // 
+    for (let i = 0; i < 1; i += 8) {
+        var weatherForecastToday = data.list[0];
+        var todayTemperature = weatherForecastToday.main.temp;
+        var todayHumidity = weatherForecastToday.main.humidity;
+        var todayWind = weatherForecastToday.wind.speed;
 
-    // currentWeather = [temperature, humidity, wind];
-    // console.log(currentWeather);
-    // citySearchTerm.innerHTML = cityInputEl.value;
-    // console.log(cityInputEl.value)
+        todayTempEl = document.querySelector("#temperature");
+        todayHumidEl = document.querySelector("#humidity");
+        todayWindEl = document.querySelector("#wind");
+
+        todayTempEl.textContent = 'Temperature: ' + todayTemperature + ' F' + ',' + '';
+        console.log(todayTempEl.textContent);
+        todayHumidEl.textContent = 'Humidity: ' + todayHumidity + ' g/m3' + ',' + '';
+        todayWindEl.textContent = 'Wind Speed: ' + todayWind + ' KT';
+
+        resultContainerEl.append(todayTempEl, todayHumidEl, todayWindEl);
+        forecast.append(resultContainerEl);
+    }
 
 
-    // if (currentForecast < 5) {
-    //     console.log(currentForecast);
-    //     // currentWeather.textContent = resultContainerEl
-    //     resultContainerEl.innerHTML = '';
-
-    // }
     for (let i = 7; i < data.list.length; i += 8) {
         var result = document.createElement('div');
+
         var dateEl = document.createElement('p');
-        var tempEl = document.createElement("p")
+        var tempEl = document.createElement("p");
+        var humidEl = document.createElement("p");
+        var windEl = document.createElement("p");
+
+
         console.log(result);
 
         var weatherForecastData = data.list[i];
-        console.log(weatherForecastData);
+        console.log(data);
+
+
 
         var dayTemperature = weatherForecastData.main.temp;
-        console.log(temperature)
         var dayHumidity = weatherForecastData.main.humidity;
-        console.log(humidity)
         var dayWind = weatherForecastData.wind.speed;
-        console.log(wind)
+
         var dayDates = new Date(weatherForecastData.dt * 1000).toLocaleDateString();
 
-        result.classList = 'col-12 col-md-6';
-        dateEl.textContent = dayDates
-        tempEl.textContent = dayTemperature
-        // currentWeather.appendChild(titleEl);
-        // resultContainerEl.appendChild(weatherForecast);
-        result.append(dateEl, tempEl);
+        result.classList = 'col-12 col-md-6 flex-row align-center';
+        dateEl.textContent = dayDates;
+        tempEl.textContent = 'Temperature: ' + dayTemperature + ' F';
+        humidEl.textContent = 'Humidity: ' + dayHumidity + ' g/m3';
+        windEl.textContent = 'Wind Speed: ' + dayWind + ' KT';
+
+
+
+        result.append(dateEl, tempEl, humidEl, windEl);
+        localStorage.setItem('Todays temp', todayTemperature, 'Todays humidity', todayHumidity, 'Todays wind', todayWind, '5-day date', dayDates, '5-day temp', dayTemperature, '5-day humid', dayHumidity, '5-day wind', dayWind);
         forecast.append(result);
+
+
+
     }
 };
 

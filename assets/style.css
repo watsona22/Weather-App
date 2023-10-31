@@ -40,6 +40,21 @@ main {
 
 p {
     font-size: 1.2rem;
+    font-size: 1.3rem;
+    text-decoration: none;
+    padding: 6px 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0;
+    border-radius: var(--border-radius);
+    color: var(--primary);
+    border: none;
+    outline: none;
+    background-color: var(--light-dark);
+    box-shadow: 3px 3px var(--dark);
+    transform: translate(-1px, -1px);
+    align-items: center;
 }
 
 .btn {
@@ -56,6 +71,22 @@ p {
     background-color: var(--light-dark);
     box-shadow: 3px 3px var(--dark);
     transform: translate(-1px, -1px);
+}
+
+.subtitle {
+    font-size: medium;
+}
+
+
+
+#future-forecast {
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-left: 220px;
+    flex: 1 0 1;
+    /* background-color: green; */
 }
 
 .btn:hover {
