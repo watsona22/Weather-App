@@ -34,7 +34,7 @@ const formSubmitHandler = function (event) {
 };
 
 const getCityWeather = function (user) {
-    var apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityInputEl.value + '&units=imperial&list.weather.id&appid=343936b9fd05267869e0bf8c1d533d1c';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityInputEl.value + '&units=imperial&list.weather.id&appid=343936b9fd05267869e0bf8c1d533d1c';
 
 
     fetch(apiUrl)
